@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         configureNextButton();
+
+        MediaPlayer music = MediaPlayer.create(MainActivity.this, R.raw.music);
+        music.start();
     }
 
     public void configureNextButton(){
