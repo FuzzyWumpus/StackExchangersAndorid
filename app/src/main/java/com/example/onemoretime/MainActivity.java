@@ -9,7 +9,10 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.ToggleButton;
 
 import java.io.IOException;
 
@@ -23,10 +26,27 @@ public class MainActivity extends AppCompatActivity {
         configureNextButton();
 
         MediaPlayer music = MediaPlayer.create(MainActivity.this, R.raw.music);
+        music.setLooping(true);
         music.start();
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.toggleButton);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int length;
+                if (isChecked) {
+                    music.pause();
+                    length = music.getCurrentPosition();
+                } else {
+                    music.start();
+                }
+            }
+        });
+
+        toggle.setTextOff("Mute");
+        toggle.setTextOn("Unmute");
+        toggle.setChecked(true);
     }
 
-    public void configureNextButton(){
+    public void configureNextButton() {
         ImageButton nextButton = (ImageButton) findViewById(R.id.playGame);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
