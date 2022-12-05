@@ -32,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int length;
-                if (isChecked) {
+                if (!isChecked) {
+                    music.start();
+                   // length = music.getCurrentPosition();
+                } else {
                     music.pause();
                     length = music.getCurrentPosition();
-                } else {
-                    music.start();
                 }
             }
         });
