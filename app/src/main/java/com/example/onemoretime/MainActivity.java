@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int length;
-                if (!isChecked) {
-                    music.start();
-                   // length = music.getCurrentPosition();
-                } else {
+                if (isChecked) {
                     music.pause();
+                    length = music.getCurrentPosition();
+                } else {
+                    music.start();
                     length = music.getCurrentPosition();
                 }
             }
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Game.class));
+                startActivity(new Intent(MainActivity.this, matching.class));
             }
         });
     }
