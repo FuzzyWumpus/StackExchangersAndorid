@@ -14,7 +14,7 @@ import com.example.onemoretime.R.drawable.*
 
 
 private const val Tag = "matching"
-class matching : AppCompatActivity() {
+class matching12 : AppCompatActivity() {
 
     private lateinit var buttons: List<ImageButton>
     private lateinit var cards: List<MemoryCard>
@@ -26,13 +26,14 @@ class matching : AppCompatActivity() {
     private var clicked = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_matching)
+        setContentView(R.layout.activity_matching12)
 
         val possibleImages = mutableListOf(cloud, fireflower, luigi, mario, mushroom, star)
         possibleImages.shuffle()
 
         val images = mutableListOf(possibleImages.get(0), possibleImages.get(1),
-            possibleImages.get(2),possibleImages.get(3))
+            possibleImages.get(2),possibleImages.get(3),possibleImages.get(4),
+            possibleImages.get(5))
 
 
         // Add each image twice so we can create pairs
@@ -40,27 +41,30 @@ class matching : AppCompatActivity() {
         // Randomize the order of images
         images.shuffle()
 
-        score = findViewById(R.id.textView)
+        score = findViewById(R.id.textView6)
         score.setText("Points: " + points)
 
 
         buttons = listOf(
-            findViewById(R.id.imageButton),
-            findViewById(R.id.imageButton2),
-            findViewById(R.id.imageButton3),
-            findViewById(R.id.imageButton4),
-            findViewById(R.id.imageButton5),
-            findViewById(R.id.imageButton6),
-            findViewById(R.id.imageButton7),
-            findViewById(R.id.imageButton8),
-
+            findViewById(R.id.imageButton29),
+            findViewById(R.id.imageButton30),
+            findViewById(R.id.imageButton31),
+            findViewById(R.id.imageButton15),
+            findViewById(R.id.imageButton16),
+            findViewById(R.id.imageButton17),
+            findViewById(R.id.imageButton35),
+            findViewById(R.id.imageButton33),
+            findViewById(R.id.imageButton18),
+            findViewById(R.id.imageButton36),
+            findViewById(R.id.imageButton34),
+            findViewById(R.id.imageButton32),
             )
 
         cards = buttons.indices.map { index ->
             MemoryCard(images[index])
         }
 
-        findViewById<Button>(R.id.tryAgain).setOnClickListener {
+        findViewById<Button>(R.id.button102).setOnClickListener {
 
             if(indexOfSingleSelectedCard == null) {
                 restoreCards()
@@ -68,18 +72,18 @@ class matching : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.newGame).setOnClickListener {
+        findViewById<Button>(R.id.button100).setOnClickListener {
             finish()
             startActivity(getIntent())
             overridePendingTransition(0,0)
         }
 
-        findViewById<Button>(R.id.exitGame).setOnClickListener {
+        findViewById<Button>(R.id.button101).setOnClickListener {
             finish()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        findViewById<Button>(R.id.endGame).setOnClickListener {
+        findViewById<Button>(R.id.endGame4).setOnClickListener {
             cards.forEachIndexed { index, card ->
                 val button = buttons[index]
                 card.isFaceUp = true;
@@ -100,7 +104,7 @@ class matching : AppCompatActivity() {
         }
     }
     private fun toogleTryAgain() {
-        findViewById<Button>(R.id.tryAgain).setOnClickListener {
+        findViewById<Button>(R.id.button102).setOnClickListener {
             Toast.makeText(this, "Nah you gave up, start a new game", Toast.LENGTH_SHORT).show()
 
         }
@@ -166,7 +170,7 @@ class matching : AppCompatActivity() {
             points += 2
             score.text = "Points: " + points
 
-            if (correctpairs == 4) {
+            if (correctpairs == 6) {
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                 builder.setTitle("Name for your score")
 

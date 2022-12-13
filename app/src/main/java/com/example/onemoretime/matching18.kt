@@ -14,7 +14,7 @@ import com.example.onemoretime.R.drawable.*
 
 
 private const val Tag = "matching"
-class matching : AppCompatActivity() {
+class matching18 : AppCompatActivity() {
 
     private lateinit var buttons: List<ImageButton>
     private lateinit var cards: List<MemoryCard>
@@ -26,13 +26,16 @@ class matching : AppCompatActivity() {
     private var clicked = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_matching)
+        setContentView(R.layout.activity_matching18)
 
-        val possibleImages = mutableListOf(cloud, fireflower, luigi, mario, mushroom, star)
+        val possibleImages = mutableListOf(twoofheartssmall, mariosmall, luigismall, twoofdiamondssmall, starsmall, nineofdiamondssmall,
+            mushroomsmall, fireflowersmall, fiveofdiamondssmall, cloudsmall)
         possibleImages.shuffle()
 
-        val images = mutableListOf(possibleImages.get(0), possibleImages.get(1),
-            possibleImages.get(2),possibleImages.get(3))
+        val images = mutableListOf(possibleImages.get(0), possibleImages.get(1),possibleImages.get(2), possibleImages.get(3),
+            possibleImages.get(4), possibleImages.get(5),possibleImages.get(6),possibleImages.get(7),possibleImages.get(8),
+
+        )
 
 
         // Add each image twice so we can create pairs
@@ -40,46 +43,55 @@ class matching : AppCompatActivity() {
         // Randomize the order of images
         images.shuffle()
 
-        score = findViewById(R.id.textView)
+        score = findViewById(R.id.textView7)
         score.setText("Points: " + points)
 
 
         buttons = listOf(
-            findViewById(R.id.imageButton),
-            findViewById(R.id.imageButton2),
-            findViewById(R.id.imageButton3),
-            findViewById(R.id.imageButton4),
-            findViewById(R.id.imageButton5),
-            findViewById(R.id.imageButton6),
-            findViewById(R.id.imageButton7),
-            findViewById(R.id.imageButton8),
-
+            findViewById(R.id.imageButton83),
+            findViewById(R.id.imageButton45),
+            findViewById(R.id.imageButton49),
+            findViewById(R.id.imageButton84),
+            findViewById(R.id.imageButton50),
+            findViewById(R.id.imageButton54),
+            findViewById(R.id.imageButton55),
+            findViewById(R.id.imageButton56),
+            findViewById(R.id.imageButton57),
+            findViewById(R.id.imageButton58),
+            findViewById(R.id.imageButton59),
+            findViewById(R.id.imageButton60),
+            findViewById(R.id.imageButton61),
+            findViewById(R.id.imageButton62),
+            findViewById(R.id.imageButton63),
+            findViewById(R.id.imageButton64),
+            findViewById(R.id.imageButton81),
+            findViewById(R.id.imageButton82),
             )
 
         cards = buttons.indices.map { index ->
             MemoryCard(images[index])
         }
-
-        findViewById<Button>(R.id.tryAgain).setOnClickListener {
+        //Try Again Button
+        findViewById<Button>(R.id.button11).setOnClickListener {
 
             if(indexOfSingleSelectedCard == null) {
                 restoreCards()
                 updateViews()
             }
         }
-
-        findViewById<Button>(R.id.newGame).setOnClickListener {
+        //New game button
+        findViewById<Button>(R.id.button13).setOnClickListener {
             finish()
             startActivity(getIntent())
             overridePendingTransition(0,0)
         }
-
-        findViewById<Button>(R.id.exitGame).setOnClickListener {
+        // End game Button
+        findViewById<Button>(R.id.button12).setOnClickListener {
             finish()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        findViewById<Button>(R.id.endGame).setOnClickListener {
+        findViewById<Button>(R.id.endGame7).setOnClickListener {
             cards.forEachIndexed { index, card ->
                 val button = buttons[index]
                 card.isFaceUp = true;
@@ -100,7 +112,7 @@ class matching : AppCompatActivity() {
         }
     }
     private fun toogleTryAgain() {
-        findViewById<Button>(R.id.tryAgain).setOnClickListener {
+        findViewById<Button>(R.id.button11).setOnClickListener {
             Toast.makeText(this, "Nah you gave up, start a new game", Toast.LENGTH_SHORT).show()
 
         }
@@ -113,7 +125,7 @@ class matching : AppCompatActivity() {
             if (card.isMatched) {
                 button.alpha = 0.1f
             }
-            button.setImageResource(if (card.isFaceUp) card.identifier else R.drawable.cardback)
+            button.setImageResource(if (card.isFaceUp) card.identifier else R.drawable.cardbacksmall)
         }
     }
 
@@ -166,7 +178,7 @@ class matching : AppCompatActivity() {
             points += 2
             score.text = "Points: " + points
 
-            if (correctpairs == 4) {
+            if (correctpairs == 9) {
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                 builder.setTitle("Name for your score")
 
